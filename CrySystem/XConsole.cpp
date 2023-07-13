@@ -875,7 +875,8 @@ void CXConsole::Draw()
 				m_pRenderer->Draw2dImage(0,0,800,600,m_pImage->GetTextureID(), 0.0f, 1.0f, 1.0f, 0.0f);
 			}else
 			{
-        m_pRenderer->SetState(GS_NODEPTHTEST);
+		//IDL
+        m_pRenderer->SetState(GS_BLSRC_SRCALPHA | GS_BLDST_ONEMINUSSRCALPHA | GS_NODEPTHTEST); //m_pRenderer->SetState(GS_NODEPTHTEST);
 				m_pRenderer->TransformTextureMatrix(time,0,0,1);
 				m_pRenderer->Draw2dImage(0,(float)(m_nScrollPos-m_nScrollMax),800,(float)(m_nScrollMax),m_pImage->GetTextureID(),4.0f,2.0f);	
 				m_pRenderer->ResetTextureMatrix();
@@ -1100,7 +1101,7 @@ void CXConsole::DumpCommandsVars(char *prefix)
 	if(!f) return;
 	
 	fprintf(f," CHEAT: stays in the default value if cheats are not disabled\n");
-	fprintf(f," REQUIRE_NET_SYNC: cannot be changed on client and when connecting it´s sent to the client\n");
+	fprintf(f," REQUIRE_NET_SYNC: cannot be changed on client and when connecting itï¿½s sent to the client\n");
 	fprintf(f," SAVEGAME: stored when saving a savegame\n");
 	fprintf(f," READONLY: can not be changed by the user\n");
 	fprintf(f,"-------------------------\n");
