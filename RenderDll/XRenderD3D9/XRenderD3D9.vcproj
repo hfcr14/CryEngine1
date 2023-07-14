@@ -58,6 +58,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
+				IgnoreDefaultLibraryNames="LIBC"
 				ProgramDatabaseFile=".\Release/XRenderD3D9.pdb"
 				ImportLibrary="$(IntDir)/$(TargetName).lib"/>
 			<Tool
@@ -134,6 +135,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
+				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				BaseAddress="0x38000000"/>
 			<Tool
@@ -203,6 +205,7 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
+				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				ImportLibrary="$(IntDir)/$(TargetName).lib"/>
 			<Tool
@@ -270,7 +273,7 @@
 				OutputFile="$(OutDir)/$(ProjectName).dll"
 				SuppressStartupBanner="FALSE"
 				AdditionalLibraryDirectories="E:\WINDDK\dx9\AMD64\libs;Libraries"
-				IgnoreDefaultLibraryNames="libcd.lib"
+				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
 				LargeAddressAware="2"
@@ -346,7 +349,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="FALSE"
 				AdditionalLibraryDirectories="D:\AMD64\dx91amd64\libs;Libraries"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
 				LargeAddressAware="2"
