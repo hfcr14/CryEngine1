@@ -15,7 +15,7 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="C:\MasterCD\Bin32"
 			IntermediateDirectory="Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -90,7 +90,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="C:\MasterCD\Bin32"
 			IntermediateDirectory="Profile"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -166,7 +166,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="C:\MasterCD\Bin32"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -235,7 +235,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug64|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="C:\MasterCD\Bin32"
 			IntermediateDirectory="Debug64"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -305,7 +305,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release64|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="C:\MasterCD\Bin32"
 			IntermediateDirectory="Release64"
 			ConfigurationType="2"
 			UseOfMFC="0"
