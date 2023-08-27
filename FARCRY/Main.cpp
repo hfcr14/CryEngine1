@@ -14,6 +14,9 @@
 #ifdef WIN32
 #include <windows.h>
 #include <process.h>
+#include <stdio.h>
+#include <ctype.h>
+
 #endif
 
 //#define FARCRY_CD_CHECK_RUSSIAN
@@ -672,7 +675,7 @@ bool RunGame(HINSTANCE hInstance,const char *sCmdLine)
 			if (strf != std::string::npos)
 			{
 				strf+=4;
-				while(!std::isspace(str[strf]) && strf < str.length())
+				while(!isspace(str[strf]) && strf < str.length())
 				{
 					strf++;
 					modName+=tolower(str[strf]);
