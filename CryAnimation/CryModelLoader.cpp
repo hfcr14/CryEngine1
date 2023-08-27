@@ -533,6 +533,21 @@ unsigned CryModelLoader::loadAnimationsWithCAL ()
 				g_GetLog()->LogWarning ("\003Unknown directive %s", szDirective);
 			continue;
 		}
+		else
+		{
+		//FIX LOADING MISSING ANIMS
+			string animCafNAME = string(strAnimDirName);
+			animCafNAME+="\\";
+			animCafNAME+=string(szFileName);
+			FILE *file = g_GetPak()->FOpen(animCafNAME.c_str(),"r");
+			if (!file)
+			{
+				//CryLogAlways("$8CRYANIMATION NOT FOUND CAF FILE %s",animCafNAME);
+				g_GetLog()->LogWarning ("\003Not found CAF file %s", animCafNAME);
+				continue;
+			}
+			g_GetPak()->FClose(file);
+		}
 
 		arrAnimFiles.push_back(SAnimFile (strAnimDirName + "\\" + szFileName, szAnimName,nAnimFlags));
 	}
