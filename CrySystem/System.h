@@ -235,6 +235,8 @@ public:
 private:
 	//! @name Initialization routines
 	//@{ 
+	void LoadCustomDLL(HMODULE &mod, const char *name);
+
 	bool InitNetwork();
 	bool InitInput(WIN_HINSTANCE hinst,WIN_HWND hwnd);
 	bool InitConsole();

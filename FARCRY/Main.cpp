@@ -659,9 +659,38 @@ bool RunGame(HINSTANCE hInstance,const char *sCmdLine)
 
 		SSystemInitParams sip;
 		sip.sLogFileName = "log.txt";
-
+		
+		string sysDllNAME = DLL_SYSTEM;
+		string modName = "";
 		if (szLocalCmdLine[0])
 		{
+		//custom CrySystem.dll
+			string str = szLocalCmdLine;
+			std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+			string sFind = string("-")+"m"+"o"+"d"+":";
+			size_t strf = str.find(sFind.c_str());
+			if (strf != std::string::npos)
+			{
+				strf+=4;
+				while(!std::isspace(str[strf]) && strf < str.length())
+				{
+					strf++;
+					modName+=tolower(str[strf]);
+				}
+				modName.erase(std::remove_if(modName.begin(), modName.end(), isspace), modName.end()); //delete space in the end of mod name
+				if (!modName.empty())
+				{
+					char szFolderName[256];
+					sprintf(szFolderName,"mods\\%s\\bin32\\%s",modName.c_str(),DLL_SYSTEM);
+					FILE *pFile=fxopen(szFolderName, "rb");
+					if (pFile)
+					{
+						sysDllNAME = szFolderName;
+						fclose(pFile);
+					}
+				}
+			}
+			//
 			int nLen=(int)strlen(szLocalCmdLine);
 			if (nLen>MAX_CMDLINE_LEN)
 				nLen=MAX_CMDLINE_LEN;
@@ -680,7 +709,8 @@ bool RunGame(HINSTANCE hInstance,const char *sCmdLine)
 			}
 		}
 
-		g_hSystemHandle = LoadLibrary(DLL_SYSTEM);
+	//	MessageBox(0, sysDllNAME.c_str(), "sysDllNAME.c_str()", MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+		g_hSystemHandle = LoadLibrary(sysDllNAME.c_str());
 		if (!g_hSystemHandle)
 		{
 			DWORD dwLastError = GetLastError();

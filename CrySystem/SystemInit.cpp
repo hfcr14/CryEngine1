@@ -85,6 +85,24 @@ extern HMODULE gDLLHandle;
 //////////////////////////////////////////////////////////////////////////
 #include "Validator.h"
 //////////////////////////////////////////////////////////////////////////
+void CSystem::LoadCustomDLL(HMODULE &mod, const char *name)
+{
+	string DllNAME = name;
+	if (m_szGameMOD[0])
+	{
+		char szFolderName[256];
+		sprintf(szFolderName,"mods\\%s\\bin32\\%s",m_szGameMOD,name);
+		FILE *pFile=fxopen(szFolderName, "rb");
+		if (pFile)
+		{
+			DllNAME = szFolderName;
+			fclose(pFile);
+		}
+	}
+//	MessageBox(0, DllNAME.c_str(), "DllNAME.c_str()", MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	mod = LoadDLL( DllNAME.c_str() );
+}
+
 bool CSystem::OpenRenderLibrary(const char *t_rend)
 {
 	#ifdef _XBOX
@@ -190,7 +208,8 @@ bool CSystem::OpenRenderLibrary(int type)
 		Error("No renderer specified");
 		return (false);
 	}
-	m_dll.hRenderer = LoadDLL(libname);
+	//m_dll.hRenderer = LoadDLL(libname);
+	LoadCustomDLL(m_dll.hRenderer,libname);
 	if (!m_dll.hRenderer)
 		return false;
 
@@ -292,7 +311,8 @@ bool CSystem::InitNetwork()
 
 #ifndef _XBOX
 	PFNCREATENETWORK pfnCreateNetwork;
-	m_dll.hNetwork = LoadDLL( DLL_NETWORK );
+	//m_dll.hNetwork = LoadDLL( DLL_NETWORK );
+	LoadCustomDLL(m_dll.hNetwork,DLL_NETWORK);
 	if (!m_dll.hNetwork)
 		return false;
 
@@ -324,7 +344,8 @@ bool CSystem::InitEntitySystem(WIN_HINSTANCE hInstance, WIN_HWND hWnd)
 	PFNCREATEENTITYSYSTEM pfnCreateEntitySystem;
 
 	// Load the DLL
-	m_dll.hEntitySystem = LoadDLL( DLL_ENTITYSYSTEM );
+	//m_dll.hEntitySystem = LoadDLL( DLL_ENTITYSYSTEM );
+	LoadCustomDLL(m_dll.hEntitySystem,DLL_ENTITYSYSTEM);
 	if (!m_dll.hEntitySystem)
 		return false;
 
@@ -360,7 +381,8 @@ bool CSystem::InitEntitySystem(WIN_HINSTANCE hInstance, WIN_HWND hWnd)
 /////////////////////////////////////////////////////////////////////////////////
 bool CSystem::InitInput(WIN_HINSTANCE hinst, WIN_HWND hwnd)
 {
-	m_dll.hInput = LoadDLL(DLL_INPUT);
+	//m_dll.hInput = LoadDLL(DLL_INPUT);
+	LoadCustomDLL(m_dll.hInput,DLL_INPUT);
 	if (!m_dll.hInput)
 		return false;
 
@@ -515,7 +537,8 @@ bool CSystem::InitSound(WIN_HWND hwnd)
 {
 #if !defined(LINUX)
 #ifndef _XBOX
-	m_dll.hSound = LoadDLL(DLL_SOUND);
+	//m_dll.hSound = LoadDLL(DLL_SOUND);
+	LoadCustomDLL(m_dll.hSound,DLL_SOUND);
 	if(!m_dll.hSound)
 		return false;
 
@@ -550,7 +573,8 @@ bool CSystem::InitSound(WIN_HWND hwnd)
 bool CSystem::InitPhysics()
 {
 #ifndef _XBOX
-	m_dll.hPhysics = LoadDLL(DLL_PHYSICS);
+	//m_dll.hPhysics = LoadDLL(DLL_PHYSICS);
+	LoadCustomDLL(m_dll.hPhysics,DLL_PHYSICS);
 	if(!m_dll.hPhysics)
 		return false;
 
@@ -724,7 +748,8 @@ bool CSystem::InitMovieSystem()
 {
 #if !defined(LINUX)
 #ifdef WIN32
-	m_dll.hMovie = LoadDLL(DLL_MOVIE);
+	//m_dll.hMovie = LoadDLL(DLL_MOVIE);
+	LoadCustomDLL(m_dll.hMovie,DLL_MOVIE);
 	if(!m_dll.hMovie)
 		return false;
 
@@ -754,7 +779,8 @@ bool CSystem::InitMovieSystem()
 bool CSystem::InitAISystem()
 {
 #ifndef _XBOX
-	m_dll.hAI = LoadDLL(DLL_AI);
+	//m_dll.hAI = LoadDLL(DLL_AI);
+	LoadCustomDLL(m_dll.hAI,DLL_AI);
 	if (!m_dll.hAI)
 		return true;
 
@@ -786,7 +812,8 @@ bool CSystem::InitScriptSystem()
 #if defined(LINUX)
 	m_dll.hScript = LoadDLL("cryscriptsystem.so");
 #else
-	m_dll.hScript = LoadDLL("CryScriptSystem.dll");
+	//m_dll.hScript = LoadDLL("CryScriptSystem.dll");
+	LoadCustomDLL(m_dll.hScript,"CryScriptSystem.dll");
 #endif
 	if(m_dll.hScript==NULL)
 		return (false);
@@ -862,7 +889,8 @@ bool CSystem::InitFont()
 		return true;
 
 #ifndef _XBOX
-	m_dll.hFont = LoadDLL(DLL_FONT);
+	//m_dll.hFont = LoadDLL(DLL_FONT);
+	LoadCustomDLL(m_dll.hFont,DLL_FONT);
 	if(!m_dll.hFont)
 		return (false);
 
@@ -932,7 +960,8 @@ bool CSystem::InitFont()
 bool CSystem::Init3DEngine()
 {
   ::SetLastError(0);
-  m_dll.h3DEngine = LoadDLL(DLL_3DENGINE);
+  //m_dll.h3DEngine = LoadDLL(DLL_3DENGINE);
+  LoadCustomDLL(m_dll.h3DEngine,DLL_3DENGINE);
 	if (!m_dll.h3DEngine)
 		return false;
 
@@ -968,7 +997,8 @@ bool CSystem::InitAnimationSystem()
 #if defined(LINUX)
 	m_dll.hAnimation = LoadDLL("cryanimation.so");
 #else
-	m_dll.hAnimation = LoadDLL("CryAnimation.dll");
+	//m_dll.hAnimation = LoadDLL("CryAnimation.dll");
+	LoadCustomDLL(m_dll.hAnimation,"CryAnimation.dll");
 #endif
 	if (!m_dll.hAnimation)
 		return false;

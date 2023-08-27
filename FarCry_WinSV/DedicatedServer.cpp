@@ -4,6 +4,9 @@
 #include <IConsole.h>										// ICVar
 #include <ITimer.h>											// CTimeValue
 
+#include <string>
+#include <algorithm>
+
 static HMODULE g_hSystemHandle=NULL;
 #if !defined(LINUX)
 	#define DLL_SYSTEM "CrySystem.dll"
@@ -111,7 +114,40 @@ bool InitDedicatedServer_System( const char *sInCmdLine )
 #endif
 #ifndef _XBOX
   
-	g_hSystemHandle = CryLoadLibrary(DLL_SYSTEM);
+	string sysDllNAME = DLL_SYSTEM;
+	string modName = "";
+	if (sInCmdLine[0])
+	{
+	//custom CrySystem.dll
+		string str = sInCmdLine;
+		std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+		string sFind = string("-")+"m"+"o"+"d"+":";
+		size_t strf = str.find(sFind.c_str());
+		if (strf != std::string::npos)
+		{
+			strf+=4;
+			while(!std::isspace(str[strf]) && strf < str.length())
+			{
+				strf++;
+				modName+=tolower(str[strf]);
+			}
+			modName.erase(std::remove_if(modName.begin(), modName.end(), isspace), modName.end()); //delete space in the end of mod name
+			if (!modName.empty())
+			{
+				char szFolderName[256];
+				sprintf(szFolderName,"mods\\%s\\bin32\\%s",modName.c_str(),DLL_SYSTEM);
+				FILE *pFile=fxopen(szFolderName, "rb");
+				if (pFile)
+				{
+					sysDllNAME = szFolderName;
+					fclose(pFile);
+				}
+			}
+		}
+	}
+
+//	MessageBox(0, sysDllNAME.c_str(), "sysDllNAME.c_str()", MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	g_hSystemHandle = CryLoadLibrary(sysDllNAME.c_str());
  
 	if (!g_hSystemHandle)  
 	{
