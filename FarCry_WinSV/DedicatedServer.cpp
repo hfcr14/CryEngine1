@@ -3,6 +3,8 @@
 #include "CryLibrary.h"
 #include <IConsole.h>										// ICVar
 #include <ITimer.h>											// CTimeValue
+#include <stdio.h>
+#include <ctype.h>
 
 #include <string>
 #include <algorithm>
@@ -126,7 +128,7 @@ bool InitDedicatedServer_System( const char *sInCmdLine )
 		if (strf != std::string::npos)
 		{
 			strf+=4;
-			while(!std::isspace(str[strf]) && strf < str.length())
+			while(!isspace(str[strf]) && strf < str.length())
 			{
 				strf++;
 				modName+=tolower(str[strf]);
