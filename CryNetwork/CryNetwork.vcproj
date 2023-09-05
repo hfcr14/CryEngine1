@@ -15,7 +15,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="D:\Far Cry1.4 (packed by HFCR)\Mods\AMP228\Bin32"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -84,7 +84,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\..\..\OpenFC"
+			OutputDirectory="D:\Games\FC\Bin32"
 			IntermediateDirectory="Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -122,7 +122,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib wininet.lib Wsock32.lib Ws2_32.lib"
-				OutputFile="$(OutDir)/$(ProjectName).dll"
+				OutputFile=".\Release/CryNetwork.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				IgnoreDefaultLibraryNames="libcmt.lib"
@@ -158,7 +158,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="..\..\..\..\..\OpenFC"
 			IntermediateDirectory="Profile"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -189,7 +189,7 @@
 				ProgramDataBaseFileName=".\Profile/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="0"
+				DebugInformationFormat="3"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -201,7 +201,7 @@
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="&quot;.\..\ubisoft.com\GSServices\sdks/gs-sdk-regserver/lib_win32&quot;;&quot;.\..\ubisoft.com\GSServices\sdks/gs-sdk-msclient/lib_win32&quot;;&quot;.\..\ubisoft.com\GSServices\sdks/gs-sdk-common/lib_win32&quot;;&quot;.\..\ubisoft.com\GSServices\sdks/gs-sdk-base/lib_win32&quot;;&quot;..\ubisoft.com\GSServices\sdks\gs-sdk-cdkey\lib_win32&quot;"
 				IgnoreDefaultLibraryNames="libcmt.lib"
-				GenerateDebugInformation="FALSE"
+				GenerateDebugInformation="TRUE"
 				BaseAddress="0x34500000"/>
 			<Tool
 				Name="VCMIDLTool"

@@ -92,7 +92,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="..\..\..\..\..\..\OpenFC"
 			IntermediateDirectory="Profile"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -167,7 +167,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="D:\Far Cry1.4 (packed by HFCR)\OpenFC"
 			IntermediateDirectory="Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"

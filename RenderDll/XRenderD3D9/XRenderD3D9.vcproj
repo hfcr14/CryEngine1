@@ -15,7 +15,7 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\..\..\..\OpenFC"
+			OutputDirectory="D:\Games\FC\Bin32"
 			IntermediateDirectory="Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -54,11 +54,10 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386 "
 				AdditionalDependencies="Winmm.lib version.lib d3dx9.lib d3d9.lib DXErr9.lib cg.lib cgD3D9.lib"
-				OutputFile="$(OutDir)/$(ProjectName).dll"
+				OutputFile=".\Release/XRenderD3D9.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
-				IgnoreDefaultLibraryNames="LIBC"
 				ProgramDatabaseFile=".\Release/XRenderD3D9.pdb"
 				ImportLibrary="$(IntDir)/$(TargetName).lib"/>
 			<Tool
@@ -91,7 +90,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="C:\MasterCD\Bin32"
+			OutputDirectory="..\..\..\..\..\..\OpenFC"
 			IntermediateDirectory="Profile"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -135,7 +134,6 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
-				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				BaseAddress="0x38000000"/>
 			<Tool
@@ -168,7 +166,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="C:\MasterCD\Bin32"
+			OutputDirectory="D:\Far Cry1.4 (packed by HFCR)\OpenFC"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -205,7 +203,6 @@
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
-				IgnoreDefaultLibraryNames="LIBC"
 				GenerateDebugInformation="TRUE"
 				ImportLibrary="$(IntDir)/$(TargetName).lib"/>
 			<Tool
@@ -238,7 +235,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug64|Win32"
-			OutputDirectory="C:\MasterCD\Bin32"
+			OutputDirectory="D:\Games\FC\Bin32"
 			IntermediateDirectory="Debug64"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -273,7 +270,7 @@
 				OutputFile="$(OutDir)/$(ProjectName).dll"
 				SuppressStartupBanner="FALSE"
 				AdditionalLibraryDirectories="E:\WINDDK\dx9\AMD64\libs;Libraries"
-				IgnoreDefaultLibraryNames="LIBC"
+				IgnoreDefaultLibraryNames="libcd.lib"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
 				LargeAddressAware="2"
@@ -308,7 +305,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release64|Win32"
-			OutputDirectory="C:\MasterCD\Bin32"
+			OutputDirectory="D:\Games\FC\Bin32"
 			IntermediateDirectory="Release64"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -349,7 +346,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="FALSE"
 				AdditionalLibraryDirectories="D:\AMD64\dx91amd64\libs;Libraries"
-				IgnoreDefaultLibraryNames="LIBC"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
 				LargeAddressAware="2"
@@ -596,12 +593,6 @@
 			<File
 				RelativePath="..\Common\CRT.cpp">
 				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Profile|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
@@ -609,18 +600,6 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug64|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="0"/>
