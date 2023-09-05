@@ -168,7 +168,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="D:\Games\FC\Bin32"
+			OutputDirectory="D:\Bin65"
 			IntermediateDirectory="Profile"
 			ConfigurationType="1"
 			UseOfMFC="2"

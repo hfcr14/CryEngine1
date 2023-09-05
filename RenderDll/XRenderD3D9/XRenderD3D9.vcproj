@@ -90,7 +90,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="..\..\..\..\..\..\OpenFC"
+			OutputDirectory="D:\Bin65"
 			IntermediateDirectory="Profile"
 			ConfigurationType="2"
 			UseOfMFC="0"
@@ -110,7 +110,7 @@
 				AdditionalIncludeDirectories="..\DX9SDK\Include;..\..\CryCommon"
 				PreprocessorDefinitions="ENABLE_FRAME_PROFILER;COMP_VC;DO_ASM;DIRECT3D9;OS_WIN32;PROC_INTEL;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRENDERD3D9_EXPORTS;DO_RENDERLOG;DO_RENDERSTATS;_RENDERER"
 				StringPooling="TRUE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="2"
 				BufferSecurityCheck="FALSE"
 				EnableFunctionLevelLinking="TRUE"
 				EnableEnhancedInstructionSet="0"
@@ -135,7 +135,7 @@
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\DX9SDK\Lib;Libraries"
 				GenerateDebugInformation="TRUE"
-				BaseAddress="0x38000000"/>
+				BaseAddress=""/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"

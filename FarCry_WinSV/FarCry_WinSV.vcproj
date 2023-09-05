@@ -126,7 +126,7 @@
 		</Configuration>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="..\..\..\..\..\OpenFC"
+			OutputDirectory="D:\Bin65"
 			IntermediateDirectory="Profile"
 			ConfigurationType="1"
 			CharacterSet="2">

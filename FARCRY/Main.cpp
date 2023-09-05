@@ -14,6 +14,7 @@
 #ifdef WIN32
 #include <windows.h>
 #include <process.h>
+#include <cctype>
 #include <stdio.h>
 #include <ctype.h>
 
