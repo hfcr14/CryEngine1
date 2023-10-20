@@ -15,7 +15,7 @@
 	<Configurations>
 		<Configuration
 			Name="Profile|Win32"
-			OutputDirectory="D:\Bin65"
+			OutputDirectory="..\..\..\..\..\OpenFC"
 			IntermediateDirectory="Profile"
 			ConfigurationType="1"
 			UseOfMFC="0"
