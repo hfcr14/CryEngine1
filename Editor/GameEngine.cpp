@@ -209,7 +209,37 @@ CGameEngine::~CGameEngine()
 //////////////////////////////////////////////////////////////////////////
 bool CGameEngine::Init( bool bPreviewMode,bool bTestMode, const char *sInCmdLine )
 {
-	m_hSystemHandle = LoadLibrary( "CrySystem.dll" );
+	string crysystemDLL = "CrySystem.dll";
+	string sysDllNAME = crysystemDLL;
+	string modName = "";
+	if (sInCmdLine[0])
+	{
+	//custom CrySystem.dll
+		string str = sInCmdLine;
+		std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+		string sFind = string("-")+"m"+"o"+"d"+":";
+		size_t strf = str.find(sFind.c_str());
+		if (strf != std::string::npos)
+		{
+			strf+=4;
+			while(!isspace(str[strf]) && strf < str.length())
+			{
+				strf++;
+				modName+=tolower(str[strf]);
+			}
+			modName.erase(std::remove_if(modName.begin(), modName.end(), isspace), modName.end()); //delete space in the end of mod name
+			if (!modName.empty())
+			{
+				char szFolderName[256];
+				sprintf(szFolderName,"mods\\%s\\bin32\\%s",modName.c_str(),crysystemDLL.c_str());
+				DWORD dwAttr = GetFileAttributes(szFolderName);
+				if (dwAttr != 0xffffffff) // file is exist
+					sysDllNAME = szFolderName;
+			}
+		}
+	}
+
+	m_hSystemHandle = LoadLibrary( sysDllNAME.c_str() );
 	if (!m_hSystemHandle)
 	{
 		Error( "CrySystem.DLL Loading Failed" );
