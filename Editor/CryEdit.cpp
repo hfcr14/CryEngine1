@@ -465,15 +465,17 @@ public:
 //  	article Q141752	to locate the previous instance of the application. .
 BOOL CCryEditApp::FirstInstance()
 {             
-	HANDLE hMutex = CreateMutex(NULL, TRUE, "FARCRY_EDITOR_MUTEX");
-	if (hMutex == NULL)
+	const char *mutexName = "FARCRY_EDITOR_MUTEX";
+	HANDLE hMutex = OpenMutex(MUTEX_ALL_ACCESS, 0, mutexName);
+	if (!hMutex)
 	{
-		MessageBox(0,"Can't create mutex","ERROR",MB_ICONERROR);
-		exit(-1);
+		hMutex = CreateMutex(0, 0, mutexName);
 	}
-
-	if (GetLastError() == ERROR_ALREADY_EXISTS)
+	else
+	{
+		CloseHandle(hMutex);
 		return FALSE;
+	}
 
 	// CWnd* pwndFirst = CWnd::FindWindow( _T("CryEditorClass"),NULL);
 	// if (pwndFirst)

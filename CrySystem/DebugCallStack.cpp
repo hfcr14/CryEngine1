@@ -392,6 +392,21 @@ int	DebugCallStack::handleException( void *exception_pointer )
 	}
 
 	firstTime = false;
+
+// clean all mutexes of process
+	HANDLE hMutex_game = OpenMutex(MUTEX_ALL_ACCESS, 0, "FARCRY_MUTEX");
+	if (hMutex_game)
+	{
+		ReleaseMutex(hMutex_game);
+		CloseHandle(hMutex_game);
+	}
+	HANDLE hMutex_editor = OpenMutex(MUTEX_ALL_ACCESS, 0, "FARCRY_EDITOR_MUTEX");
+	if (hMutex_editor)
+	{
+		ReleaseMutex(hMutex_editor);
+		CloseHandle(hMutex_editor);
+	}
+
 	hwndException = CreateDialog( gDLLHandle,MAKEINTRESOURCE(IDD_EXCEPTION),NULL,NULL );
 	
 	if (initSymbols())
