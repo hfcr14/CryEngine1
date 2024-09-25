@@ -266,15 +266,21 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	}
 	// in devmode we don't care, we allow to run multiple instances
 	// for mp debugging
-  if (!bDevMode)
-  {
-		hwndPrev = FindWindow (szWndClass, NULL);
+
+	HANDLE hMutex = CreateMutex(NULL, TRUE, "FARCRY_MUTEX");
+	if (hMutex == NULL)
+	{
+		MessageBox(0,"Can't create mutex","ERROR",MB_ICONERROR);
+		exit(-1);
+	}
+
+	if (!bDevMode)
+	{
 		// not in devmode and we found another window - see if the
 		// system is relaunching, in this case is fine 'cos the application
 		// will be closed immediately after
-		if (hwndPrev && !bRelaunching)
+		if (GetLastError() == ERROR_ALREADY_EXISTS && !bRelaunching)
 		{
-			SetForegroundWindow (hwndPrev);
 			return (-1);
 		}
 	}
@@ -287,6 +293,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 #else
 	RunGame(hInstance);
 #endif
+
+	ReleaseMutex(hMutex);
+	CloseHandle(hMutex);
+
 	return 0;
 }
 

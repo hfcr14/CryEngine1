@@ -464,32 +464,42 @@ public:
 //  	This function uses a technique similar to that described in KB 
 //  	article Q141752	to locate the previous instance of the application. .
 BOOL CCryEditApp::FirstInstance()
-{                                       
-	CWnd* pwndFirst = CWnd::FindWindow( _T("CryEditorClass"),NULL);
-	if (pwndFirst)
+{             
+	HANDLE hMutex = CreateMutex(NULL, TRUE, "FARCRY_EDITOR_MUTEX");
+	if (hMutex == NULL)
 	{
-		// another instance is already running - activate it
-		CWnd* pwndPopup = pwndFirst->GetLastActivePopup();								   
-		pwndFirst->SetForegroundWindow();
-		if (pwndFirst->IsIconic())
-			pwndFirst->ShowWindow(SW_SHOWNORMAL);
-		if (pwndFirst != pwndPopup)
-			pwndPopup->SetForegroundWindow(); 
-
-		if (m_bPreviewMode)
-		{
-			// IF in preview mode send this window copy data message to load new preview file.
-			COPYDATASTRUCT cd;
-			ZeroStruct(cd);
-			cd.dwData = 100;
-			cd.cbData = strlen(m_sPreviewFile);
-			cd.lpData = m_sPreviewFile;
-			pwndFirst->SendMessage( WM_COPYDATA,0,(LPARAM)&cd );
-		}
-		return FALSE;			
+		MessageBox(0,"Can't create mutex","ERROR",MB_ICONERROR);
+		exit(-1);
 	}
-	else
-	{   
+
+	if (GetLastError() == ERROR_ALREADY_EXISTS)
+		return FALSE;
+
+	// CWnd* pwndFirst = CWnd::FindWindow( _T("CryEditorClass"),NULL);
+	// if (pwndFirst)
+	// {
+	// 	// another instance is already running - activate it
+	// 	CWnd* pwndPopup = pwndFirst->GetLastActivePopup();								   
+	// 	pwndFirst->SetForegroundWindow();
+	// 	if (pwndFirst->IsIconic())
+	// 		pwndFirst->ShowWindow(SW_SHOWNORMAL);
+	// 	if (pwndFirst != pwndPopup)
+	// 		pwndPopup->SetForegroundWindow(); 
+
+	// 	if (m_bPreviewMode)
+	// 	{
+	// 		// IF in preview mode send this window copy data message to load new preview file.
+	// 		COPYDATASTRUCT cd;
+	// 		ZeroStruct(cd);
+	// 		cd.dwData = 100;
+	// 		cd.cbData = strlen(m_sPreviewFile);
+	// 		cd.lpData = m_sPreviewFile;
+	// 		pwndFirst->SendMessage( WM_COPYDATA,0,(LPARAM)&cd );
+	// 	}
+	// 	return FALSE;			
+	// }
+	// else
+	// {   
 		// this is the first instance
 		// Register your unique class name that you wish to use
 		WNDCLASS wndcls;
@@ -514,7 +524,7 @@ BOOL CCryEditApp::FirstInstance()
 //		bClassRegistered = TRUE;
 
 		return TRUE;
-	}
+	// }
 }	
 
 //////////////////////////////////////////////////////////////////////////
@@ -1037,6 +1047,13 @@ int CCryEditApp::ExitInstance()
 	//m_AccelManager.SaveOnExit();
 
 	CProcessInfo::UnloadPSApi();
+
+	HANDLE hMutex = OpenMutex(MUTEX_ALL_ACCESS,FALSE,_T("FARCRY_EDITOR_MUTEX"));
+	if (hMutex)
+	{
+		ReleaseMutex(hMutex);
+		CloseHandle(hMutex);
+	}
 
 	return CWinApp::ExitInstance();
 }
