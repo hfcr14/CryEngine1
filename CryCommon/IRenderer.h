@@ -695,7 +695,7 @@ struct IRenderer//: public IRendererCallbackServer
 	virtual int	EnumDisplayFormats(TArray<SDispFormat>& Formats, bool bReset)=0;
 
   //! Changes resolution of the window/device (doen't require to reload the level
-  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen)=0;
+  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen, bool bBorderless)=0;
 
 	//! Shut down the renderer
 	virtual void	Release()=0;
@@ -1118,6 +1118,7 @@ struct IRenderer//: public IRendererCallbackServer
   virtual bool DestroyRenderTarget (int nHandle)=0;
   virtual bool SetRenderTarget (int nHandle)=0;
   virtual float EF_GetWaterZElevation(float fX, float fY)=0;
+  virtual void SetWindowFocus (int focus)=0;
 };
 
 

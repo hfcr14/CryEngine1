@@ -285,7 +285,11 @@ void CD3D9Renderer::Reset (void)
   hReturn = m_pd3dDevice->BeginScene();
 }
 
-bool CD3D9Renderer::ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen)
+void CD3D9Renderer::SetWindowFocus (int focus)
+{
+}
+
+bool CD3D9Renderer::ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen, bool bBorderless)
 {
   HRESULT hReturn;
 
@@ -349,7 +353,7 @@ bool CD3D9Renderer::ChangeResolution(int nNewWidth, int nNewHeight, int nNewColD
     if (m_nRecurs)
       return false;
     m_nRecurs = 1;
-    ChangeResolution(nPrevWidth, nPrevHeight, nPrevColorDepth, 0, bPrevFullScreen);
+    ChangeResolution(nPrevWidth, nPrevHeight, nPrevColorDepth, 0, bPrevFullScreen, false);
     return false;
   }
   if (!bFullScreen)
@@ -649,12 +653,12 @@ void CD3D9Renderer::BeginFrame()
           bChanged = true;
         GetAAFormat(Formats, true);
         if (bChanged)
-          ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0);
+          ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0, false);
       }
       else
       if (CV_r_fsaa != m_FSAA)
       {
-        ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0);
+        ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0, false);
         iLog->Log(" Full scene AA: Disabled\n");
       }
     }
@@ -801,7 +805,7 @@ void CD3D9Renderer::BeginFrame()
     if (m_CVWidth && m_CVHeight && m_CVFullScreen && m_CVColorBits)
     {
       if (m_CVWidth->GetIVal() != CRenderer::m_width || m_CVHeight->GetIVal() != CRenderer::m_height || m_CVFullScreen->GetIVal() != (int)m_bFullScreen || m_CVColorBits->GetIVal() != CRenderer::m_cbpp)
-        ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0);
+        ChangeResolution(m_CVWidth->GetIVal(), m_CVHeight->GetIVal(), m_CVColorBits->GetIVal(), 75, m_CVFullScreen->GetIVal()!=0, false);
     }
   }
 

@@ -326,9 +326,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 							break;
 						}
 
-						GetClientRect(hWnd, &rect);
-						if (g_pISystem && !g_bSystemRelaunch)
-							g_pISystem->GetIRenderer()->ChangeViewport(0, 0, LOWORD(lParam), HIWORD(lParam));
+					// commented out due borderless
+						// GetClientRect(hWnd, &rect);
+						// if (g_pISystem && !g_bSystemRelaunch)
+						// 	g_pISystem->GetIRenderer()->ChangeViewport(0, 0, LOWORD(lParam), HIWORD(lParam));
 
 						break;
 					}
@@ -398,6 +399,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 							g_pISystem->GetIInput()->SetMouseExclusive(true);
 							g_pISystem->GetIInput()->SetKeyboardExclusive(true);
 						}
+						if (g_pISystem && g_pISystem->GetIRenderer())
+						{
+							g_pISystem->GetIRenderer()->SetWindowFocus(1);
+						}
 
 						break;
 					}
@@ -409,6 +414,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 							g_pISystem->GetIInput()->ClearKeyState();
 							g_pISystem->GetIInput()->SetMouseExclusive(false);
 							g_pISystem->GetIInput()->SetKeyboardExclusive(false);
+						}
+						if (g_pISystem && g_pISystem->GetIRenderer())
+						{
+							g_pISystem->GetIRenderer()->SetWindowFocus(0);
 						}
 						break;
 					}

@@ -72,7 +72,7 @@ public:
   //! Return all supported by video card video AA formats
   virtual int	EnumAAFormats(TArray<SAAFormat>& Formats, bool bReset) { return 0; }
 
-  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen);
+  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen, bool bBorderless);
   virtual void	Reset (void) {};
   virtual	void	CheckError(const char *comment);
 
@@ -200,6 +200,7 @@ public:
   virtual void  FontSetState(bool bRestore);
   virtual void  PrintToScreen(float x, float y, float size, const char *buf);
   virtual void  DrawString(int x, int y,bool bIgnoreColor,const char *message, ...) {};
+  virtual void SetWindowFocus (int focus) {}
 
   void PrepareDepthMap(ShadowMapFrustum * lof, bool make_new_tid);
   virtual void SetupShadowOnlyPass(int Num, ShadowMapFrustum * pFrustum, Vec3d * vShadowTrans, const float fShadowScale, Vec3d vObjTrans=Vec3d(0,0,0), float fObjScale=1.f, const Vec3d vObjAngles=Vec3d(0,0,0), Matrix44 * pObjMat=0);

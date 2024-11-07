@@ -796,7 +796,7 @@ public:
   virtual int	EnumAAFormats(TArray<SAAFormat>& Formats, bool bReset);
 
   //! Changes resolution of the window/device (doen't require to reload the level
-  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen);
+  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen, bool bBorderless);
   virtual void	Reset(void);
   virtual void  WaitForDevice();
 
@@ -941,6 +941,7 @@ public:
   
   void FontSetState(bool bRestore);
   //////////////////////////////////////////////////////////////////////
+  virtual void SetWindowFocus (int focus);
 
   // Shaders pipeline
   virtual void EF_Release(int nFlags);

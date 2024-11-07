@@ -147,7 +147,7 @@ public:
   virtual int	EnumAAFormats(TArray<SAAFormat>& Formats, bool bReset);
 
   //! Changes resolution of the window/device (doen't require to reload the level
-  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen);
+  virtual bool	ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, bool bFullScreen, bool bBorderless);
   virtual void	Reset (void) {};
 
   HWND  SetMode(int x,int y,int width,int height,unsigned int cbpp, int zbpp, int sbits, bool fullscreen,HINSTANCE hinst, HWND Glhwnd);
@@ -324,7 +324,7 @@ public:
 	void FontSetRenderingState(unsigned long nVirtualScreenWidth, unsigned long nVirtualScreenHeight);
 	void FontSetBlending(int src, int dst);
 	void FontRestoreRenderingState();
-  
+  virtual void SetWindowFocus (int focus) {}
 private:
 
 	bool	SetupPixelFormat(unsigned char colorbits,unsigned char zbits,unsigned char sbits,SRendContext *rc);	
