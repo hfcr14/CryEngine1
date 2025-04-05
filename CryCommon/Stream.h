@@ -25,7 +25,7 @@
 #endif // _MSC_VER > 1000
 
 // size in bytes
-#define DEFAULT_STREAM_BYTESIZE			1124
+#define DEFAULT_STREAM_BYTESIZE			2048
 #define MAX_STRING_SIZE							256
 
 #ifndef CHAR_BIT
