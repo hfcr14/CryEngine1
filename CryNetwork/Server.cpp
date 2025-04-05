@@ -696,13 +696,13 @@ void CServer::ProcessSetup(CNP &cnp, CStream &stmStream, CIPAddress &ip)
 			//m_mapIPs.insert(IPS_MAPItr::value_type(ip,nID));
 
 			// if this is a lan server
-			if(m_MPServerType==eMPST_LAN)
+			/*if(m_MPServerType==eMPST_LAN)
 			{
 				if (!IsLANIP(ip))
 				{
 					pSSlot->Disconnect("@LanIPOnly");
 				}
-			}
+			}*/
 
 			// get server password cvar
 			ICVar *sv_password = GetISystem()->GetIConsole()->GetCVar("sv_password");
