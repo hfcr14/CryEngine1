@@ -55,6 +55,7 @@ CVegetationObject::CVegetationObject( int id,CVegetationMap *pVegMap )
 	mv_precalcShadows = false;
 	mv_PhysNonColl = false;
 	mv_alphaBlend = false;
+	mv_isGrass = false;
 //	mv_useLightBit = false;
 	mv_hideable = false;
 	mv_SpriteDistRatio = 1;
@@ -87,6 +88,7 @@ CVegetationObject::CVegetationObject( int id,CVegetationMap *pVegMap )
 	AddVariable( mv_precalcShadows,"PrecalcShadow",functor(*this,&CVegetationObject::OnVarChange) );
 	AddVariable( mv_realtimeShadow,"RealTimeShadow",functor(*this,&CVegetationObject::OnVarChange) );
 	AddVariable( mv_alphaBlend,"AlphaBlend",functor(*this,&CVegetationObject::OnVarChange) );
+	AddVariable( mv_isGrass,"IsGrass",functor(*this,&CVegetationObject::OnVarChange) );
 //	AddVariable( mv_useLightBit,"UseLigthBit",functor(*this,&CVegetationObject::OnVarChange) );
 	AddVariable( mv_SpriteDistRatio,"SpriteDistRatio",functor(*this,&CVegetationObject::OnVarChange) );
 	AddVariable( mv_ShadowDistRatio,"ShadowDistRatio",functor(*this,&CVegetationObject::OnVarChange) );
@@ -246,6 +248,7 @@ void CVegetationObject::SetEngineParams()
 	grp.bRecvShadow = mv_recvShadows;
 	grp.bPrecShadow = mv_precalcShadows;
 	grp.bUseAlphaBlending = mv_alphaBlend;
+	grp.bIsGrass = mv_isGrass;
 //	grp.bTakeBrightnessFromLightBit = mv_useLightBit;
 	grp.fSpriteDistRatio = mv_SpriteDistRatio;
 	grp.fShadowDistRatio = mv_ShadowDistRatio;

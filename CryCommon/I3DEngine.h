@@ -622,6 +622,7 @@ struct IStatInstGroup
 		bRecvShadow = 0;
 		bPrecShadow = true;
 		bUseAlphaBlending = 0;
+		bIsGrass = 0;
 //		bTakeBrightnessFromLightBit = 0;
 		fSpriteDistRatio = 1.f;
 		fShadowDistRatio = 1.f;
@@ -645,6 +646,7 @@ struct IStatInstGroup
 	bool	bRecvShadow;
 	bool	bPrecShadow;
 	bool	bUseAlphaBlending;
+	bool	bIsGrass;
 //	bool	bTakeBrightnessFromLightBit;
 	float fSpriteDistRatio;
 	float fShadowDistRatio;

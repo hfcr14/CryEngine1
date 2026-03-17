@@ -174,6 +174,9 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void SetAlphaBlend( bool bEnable ) { mv_alphaBlend = bEnable; }
 	bool IsAlphaBlend() const { return mv_alphaBlend; };
+	
+	void SetIsGrass( bool bEnable ) { mv_isGrass = bEnable; }
+	bool IsGrass() const { return mv_isGrass; };
 
 	//! Copy all parameters from specified vegetation object.
 	void CopyFrom( const CVegetationObject &o );
@@ -253,6 +256,7 @@ protected:
 	CVariable<bool>		mv_hideable;
 	CVariable<bool>		mv_PhysNonColl;
 	CVariable<bool>		mv_alphaBlend;
+	CVariable<bool>		mv_isGrass;
 //	CVariable<bool>		mv_useLightBit;
 	CVariable<float>	mv_SpriteDistRatio;
 	CVariable<float>	mv_ShadowDistRatio;
