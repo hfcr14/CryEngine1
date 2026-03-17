@@ -265,8 +265,18 @@ void CRenderViewport::OnMButtonUp(UINT nFlags, CPoint point)
 //////////////////////////////////////////////////////////////////////////
 void CRenderViewport::OnMouseMove(UINT nFlags, CPoint point) 
 {
-	if (GetIEditor()->IsInGameMode())
+	if (GetIEditor()->IsInGameMode()){ // во время игры в редакторе скрываем курсор и клипаем его в пределах вьюпорта
+		RECT rc;
+		GetClientRect(&rc);
+		POINT tl = { rc.left, rc.top };
+		POINT br = { rc.right, rc.bottom };
+		ClientToScreen(&tl);
+		ClientToScreen(&br);
+		RECT clip = { tl.x, tl.y, br.x, br.y };
+		ClipCursor(&clip);
+		::SetCursor(NULL);
 		return;
+	}
 
 	SetObjectCursor(0);
 

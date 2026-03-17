@@ -548,6 +548,12 @@ void CGameEngine::SetGameMode( bool inGame )
 	if (m_inGameMode == inGame)
 		return;
 
+	if (inGame){
+		::SetCursor(NULL); // надо скрыть курсор по вхождению в игровой режим (далее он будет скрываться по движениям мыши)
+	}else{
+		::ClipCursor(NULL); // снимаем клип, чтобы курсором можно было двигать как раньше
+	}
+
 	IGame *pGame = GetIEditor()->GetGame();
 
 	//////////////////////////////////////////////////////////////////////////

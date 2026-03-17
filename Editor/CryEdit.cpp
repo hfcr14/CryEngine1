@@ -1131,6 +1131,7 @@ BOOL CCryEditApp::OnIdle(LONG lCount)
 	}
 	else
 	{
+		::ClipCursor(NULL); // если свернули окно редактора, снимаем клип курсора
 		/*
 		if (pWndForeground)
 		{
