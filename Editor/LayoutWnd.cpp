@@ -613,15 +613,11 @@ void CLayoutWnd::Cycle2DViewport()
 }
 
 //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 void CLayoutWnd::OnDestroy()
 {
+	// View panes detach/release their viewports from CViewPane::OnDestroy().
+	// Do not manually destroy viewports here, or we can leave stale pointers
+	// in CViewManager (especially the persistent perspective viewport).
 	CWnd::OnDestroy();
-
-	// Also destroy all viewports.
-	for (int i = 0; i < GetIEditor()->GetViewManager()->GetViewCount(); i++)
-	{
-		GetIEditor()->GetViewManager()->GetView(i)->DestroyWindow();
-	}
-
-	// TODO: Add your message handler code here
 }

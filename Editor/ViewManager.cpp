@@ -69,7 +69,14 @@ CViewport* CViewManager::CreateView( EViewportType type,CWnd *pParentWnd )
 	if (type == ET_ViewportCamera)
 	{
 		if (m_pPerspectiveViewport)
-			return m_pPerspectiveViewport;
+		{
+			if (::IsWindow(m_pPerspectiveViewport->GetSafeHwnd()))
+				return m_pPerspectiveViewport;
+
+			stl::find_and_erase( m_viewports,m_pPerspectiveViewport );
+			delete m_pPerspectiveViewport;
+			m_pPerspectiveViewport = 0;
+		}
 	}
 	CViewportDesc *vd = 0;
 	for (int i = 0; i < m_viewportDesc.size(); i++)
@@ -166,6 +173,7 @@ void CViewManager::UpdateViews( int flags )
 }
 
 //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 void CViewManager::ResetViews()
 {
 	// Reset each attached view,
@@ -178,13 +186,15 @@ void CViewManager::ResetViews()
 //////////////////////////////////////////////////////////////////////////
 void CViewManager::Update()
 {
-	// Update each attached view,
-	for (int i = 0; i < m_viewports.size(); i++)
+	// Update each attached view.
+	const int viewCount = m_viewports.size();
+	for (int i = 0; i < viewCount && i < m_viewports.size(); i++)
 	{
-		m_viewports[i]->Update();
+		CViewport *pViewport = m_viewports[i];
+		if (pViewport)
+			pViewport->Update();
 	}
 }
-
 //////////////////////////////////////////////////////////////////////////
 void	CViewManager::SetAxisConstrain( int axis )
 {
